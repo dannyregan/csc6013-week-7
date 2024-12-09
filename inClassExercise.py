@@ -1,7 +1,6 @@
 def main():
     """
     This program calls the arraySum() function three times with three different arrays, A, B, and C.
-    
     """
 
     def arraySum(A, start, end):
@@ -48,6 +47,43 @@ def main():
     print(f"(Final sum, number of sums) = {arraySum(B, 0, len(B) - 1)} \n")
     print(f"(Final sum, number of sums) = {arraySum(C, 0, len(C) - 1)} \n")
 
+
+
+
+
+    def merge(left, right):
+        print(f"Input arrays: {left} and {right}")
+        result, i, j = [], 0, 0
+        while i < len(left) and j < len(right):
+            if (left[i] <= right[j]):
+                result.append(left[i])
+                i += 1
+            else:
+                result.append(right[j])
+                j += 1
+        result += left[i:]
+        result += right[j:]
+        print(f"Sorted output array: {result}")
+        return result
+    
+    def mergsort(A):
+        print(f"Input array: {A}")
+        if len(A) <= 1:
+            print(f"Output array: {A}")
+            return A
+        else: 
+            mid = len(A) // 2
+            left = mergsort(A[:mid])
+            right = mergsort(A[mid:])
+            return merge(left, right)
+
+    A = [38, 21, 39, 60, -1, 10, 81, 23]
+    B = [2, 97, 5, 88, 9, 72, 12, 64, 17, 56, 21]
+    C = [100, 33, 22, 213, 65, 29, 153, 199, 47, 181, 85]
+
+    print(mergsort(A))
+    print(mergsort(B))
+    print(mergsort(C))
 # =============================================================
 
 main()
